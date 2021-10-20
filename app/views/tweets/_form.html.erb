@@ -4,24 +4,25 @@
       <h2><%= pluralize(tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
 
       <ul>
-        <% tweet.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
+      <% tweet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+  <div class="form-group">
+    <%= form.text_area :body, class: "form-control", placeholder: "Tweet your thoughts...", data: { target: "tweet-form.body", action: "keyup->tweet-form#update" } %>
   </div>
 
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-6">
+        <span></span>
+      </div>
+      <div class="col-sm-6 text-right">
+        <%= form.submit class: "btn btn-primary"%>
+      </div>
+    </div>
   </div>
 <% end %>
