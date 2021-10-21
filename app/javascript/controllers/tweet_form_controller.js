@@ -7,6 +7,7 @@ export default class extends Controller {
   initialize() {
     this.update()
   }
+
   update() {
     let count = this.bodyTarget.value.length
     let message = ""
@@ -16,5 +17,20 @@ export default class extends Controller {
       message = `${count} characters`
     }
     this.characterCountTarget.textContent = message
+
+    if (count > 140 ){
+      this.characterCountTarget.classList.add("text-danger")
+    } else {
+      this.characterCountTarget.classList.remove("text-danger")
+    }
   }
+
+  submit(event) {
+    // event.preventDefault()
+    let count = this.bodyTarget.value.length
+    if (count > 140 ){
+      event.preventDefault()
+    }
+  }
+
 }
